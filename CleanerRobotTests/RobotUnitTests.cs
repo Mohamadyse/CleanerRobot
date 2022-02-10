@@ -42,5 +42,19 @@ namespace CleanerRobotTests
             // Assert
             Assert.AreEqual(2 , result);
         }
+
+        [Test]
+        public void Verify_NumberUniquePlacesForAllCommandsMethod_OmitsTheDoubleVertices()
+        {
+            // Arrange
+            (int X, int Y) startCoordinate = (0, 0);
+            var commands = new List<(string, int)> { ("E", 1), ("W", 1) };
+
+            // Act
+            var result = _sut.NumberOfUniqueVerticesForAllCommands(startCoordinate, commands, 1);
+
+            // Assert
+            Assert.AreEqual(2, result);
+        }
     }
 }
