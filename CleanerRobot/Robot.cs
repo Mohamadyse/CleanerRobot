@@ -9,7 +9,7 @@ namespace CleanerRobot
     public class Robot
     {
 
-        public IEnumerable<(int X_Coordinate, int Y_Coordinate)> GetAllNewPlacesPerCommand((int X, int Y) startCoordinate, (string Direction, int NumberOfSteps) comand)
+        public IEnumerable<(int X_Coordinate, int Y_Coordinate)> GetAllNewVerticesPerCommand((int X, int Y) startCoordinate, (string Direction, int NumberOfSteps) comand)
         {
             var rangeOfSteps = Enumerable.Range(1, comand.NumberOfSteps);
             switch (comand.Direction)
@@ -30,14 +30,14 @@ namespace CleanerRobot
             }
         }
 
-        public int NumberUniquePlacesForAllCommands((int X, int Y) startCoordinate, List<(string Direction, int NumberOfSteps)> commands, int n)
+        public int NumberOfUniqueVerticesForAllCommands((int X, int Y) startCoordinate, List<(string Direction, int NumberOfSteps)> commands, int n)
         {
             List<(int, int)> allPlaces = new List<(int, int)>() { startCoordinate };
 
             var currentCoordinate = startCoordinate;
             foreach (var command in commands)
             {
-                var allNewPlacesPerCommand = GetAllNewPlacesPerCommand(currentCoordinate, command);
+                var allNewPlacesPerCommand = GetAllNewVerticesPerCommand(currentCoordinate, command);
                 currentCoordinate = allNewPlacesPerCommand.LastOrDefault();
                 allPlaces.AddRange(allNewPlacesPerCommand);
             }

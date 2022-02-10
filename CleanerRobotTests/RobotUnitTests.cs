@@ -23,7 +23,7 @@ namespace CleanerRobotTests
             (string Direction, int NumberOfSteps) command = ("E", 1);
 
             // Act
-            var result = _sut.GetAllNewPlacesPerCommand(startCoordinate, command);    
+            var result = _sut.GetAllNewVerticesPerCommand(startCoordinate, command);    
 
             // Assert
             Assert.AreEqual(new[] { (1, 0) },result);
@@ -37,7 +37,7 @@ namespace CleanerRobotTests
             var commands = new List<(string,int)>{ ("E", 1) };
 
             // Act
-            var result = _sut.NumberUniquePlacesForAllCommands(startCoordinate,commands,1);
+            var result = _sut.NumberOfUniqueVerticesForAllCommands(startCoordinate,commands,1);
 
             // Assert
             Assert.AreEqual(2 , result);
