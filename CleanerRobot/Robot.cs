@@ -29,5 +29,20 @@ namespace CleanerRobot
                 default: return Enumerable.Empty<(int X, int Y)>();
             }
         }
+
+        public int NumberUniquePlacesForAllCommands((int X, int Y) startCoordinate, List<(string Direction, int NumberOfSteps)> commands, int n)
+        {
+            List<(int, int)> allPlaces = new List<(int, int)>() { startCoordinate };
+
+            var currentCoordinate = startCoordinate;
+            foreach (var command in commands)
+            {
+                var allNewPlacesPerCommand = GetAllNewPlacesPerCommand(currentCoordinate, command);
+                currentCoordinate = allNewPlacesPerCommand.LastOrDefault();
+                allPlaces.AddRange(allNewPlacesPerCommand);
+            }
+
+            return allPlaces.Distinct().Count();
+        }
     }
 }
